@@ -45,11 +45,10 @@ import matplotlib.pyplot as plt
 ###  Step 2: Read the Image
 
 ```python
-# Read the image using OpenCV
-
-###
-# Your Code Here
-###
+plt.imshow(cv2.cvtColor(image, cv2.COLOR_BGR2RGB))
+plt.title("Original Image")
+plt.axis("off")
+plt.show()
 ```
 
 ---
@@ -57,11 +56,10 @@ import matplotlib.pyplot as plt
 ###  Step 3: Convert to Grayscale
 
 ```python
-# Convert to grayscale.
-
-###
-# Your Code Here
-###
+plt.imshow(gray, cmap="gray")
+plt.title("Grayscale Image")
+plt.axis("off")
+plt.show()
 ```
 
 ---
@@ -69,11 +67,17 @@ import matplotlib.pyplot as plt
 ###  Step 4: Display Images
 
 ```python
-plt.figure(figsize=(10,5))
+plt.subplot(1, 2, 1)
+plt.imshow(cv2.cvtColor(image, cv2.COLOR_BGR2RGB))
+plt.title("Original Image")
+plt.axis("off")
 
-###
-# Your Code Here
-###
+plt.subplot(1, 2, 2)
+plt.imshow(gray, cmap="gray")
+plt.title("Grayscale Image")
+plt.axis("off")
+
+plt.show()
 ```
 
 ---
@@ -81,12 +85,10 @@ plt.figure(figsize=(10,5))
 ###  Step 5: Thresholding
 
 ```python
-# Apply thresholding
-
-threshold = 
-###
-# Your Code Here
-###
+plt.imshow(thresh, cmap="gray")
+plt.title("Thresholded Image")
+plt.axis("off")
+plt.show()
 ```
 
 ---
@@ -94,8 +96,10 @@ threshold =
 ###  Step 6: Region of Interest (ROI)
 
 ```python
-# ROI masking already provided
-# (Do not modify)
+plt.imshow(cv2.cvtColor(roi, cv2.COLOR_BGR2RGB))
+plt.title("ROI Masked Image")
+plt.axis("off")
+plt.show()
 ```
 
 ---
@@ -103,11 +107,10 @@ threshold =
 ### Step 7: Edge Detection (Canny)
 
 ```python
-# Perform Edge Detection
-
-###
-# Your Code Here
-###
+plt.imshow(edges, cmap="gray")
+plt.title("Edge Detected Image")
+plt.axis("off")
+plt.show()
 ```
 
 ---
@@ -115,11 +118,10 @@ threshold =
 ###  Step 8: Gaussian Blur
 
 ```python
-# Apply Gaussian Blur
-
-###
-# Your Code Here
-###
+plt.imshow(blurred, cmap="gray")
+plt.title("Gaussian Blur")
+plt.axis("off")
+plt.show()
 ```
 
 ---
@@ -127,11 +129,17 @@ threshold =
 ###  Step 9: Hough Transform
 
 ```python
-# Detect lines using Hough Transform
+line_image = image.copy()
 
-###
-# Your Code Here
-###
+if lines is not None:
+    for line in lines:
+        x1, y1, x2, y2 = np.array(line).flatten()[:4]
+        cv2.line(line_image, (x1, y1), (x2, y2), (0, 255, 0), 3)
+
+plt.imshow(cv2.cvtColor(line_image, cv2.COLOR_BGR2RGB))
+plt.title("Detected Lines")
+plt.axis("off")
+plt.show()
 ```
 
 ---
@@ -139,8 +147,18 @@ threshold =
 ### Step 10: Lane Detection Logic
 
 ```python
-# Already implemented
-# (Do not modify)
+final_image = image.copy()
+
+if lines is not None:
+    for line in lines:
+        x1, y1, x2, y2 = np.array(line).flatten()[:4]
+        cv2.line(final_image, (x1, y1), (x2, y2), (0, 255, 0), 3)
+
+plt.figure(figsize=(10, 5))
+plt.imshow(cv2.cvtColor(final_image, cv2.COLOR_BGR2RGB))
+plt.title("Final Lane Detection Output")
+plt.axis("off")
+plt.show()
 ```
 
 ---
@@ -148,13 +166,37 @@ threshold =
 ##  Expected Output
 
 * Original image
+
+  <img width="637" height="395" alt="image" src="https://github.com/user-attachments/assets/14b53539-7af0-4127-9cba-12b7d8219cad" />
+
 * Grayscale image
+
+  <img width="641" height="397" alt="image" src="https://github.com/user-attachments/assets/662efb12-3eed-42d3-96c6-8ed3ca9d8675" />
+
 * Thresholded image
+
+  <img width="645" height="398" alt="image" src="https://github.com/user-attachments/assets/2ada8600-bed7-440b-93d4-dfb98a190911" />
+
 * ROI masked image
+
+  <img width="632" height="396" alt="image" src="https://github.com/user-attachments/assets/0941c922-a2d0-4d1c-8452-98219e5f71d7" />
+
 * Edge detected image
+
+  <img width="637" height="385" alt="image" src="https://github.com/user-attachments/assets/9f982a41-0aff-4a3d-acf4-5330d2d6821b" />
+
 * Smoothed image
+
+  <img width="641" height="392" alt="image" src="https://github.com/user-attachments/assets/38f11c23-50fb-4261-b239-2878f2e36b97" />
+
 * Detected lines
+
+  <img width="638" height="393" alt="image" src="https://github.com/user-attachments/assets/33a2b028-3593-4794-94d9-3c442a6163e5" />
+
 * Final lane detection output
+
+  <img width="867" height="536" alt="image" src="https://github.com/user-attachments/assets/d5ade676-2d5a-416a-9abc-47613245925e" />
+
 
 ---
 
@@ -175,5 +217,5 @@ Thus, the lane detection pipeline is successfully implemented by completing the 
 
 ##  Developed By
 
-* **Name:** ____________________________
-* **Register No:** ______________________
+* **Name: INDHUJA.K** 
+* **Register No: 212225040133** 
